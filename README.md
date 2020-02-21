@@ -1,8 +1,8 @@
 # PerfectSenseBlog
 
 Concept ~ Simple Blogger application for perfect sense to use internally
--[x] Authentication system with password reset option
--[x] Rich Text Field, implemented for posts/articles
+- [x] Authentication system with password reset option
+- [x] Rich Text Field, implemented for posts/articles
 -[x] Comment system implemented
 -[x] Profile pictures implemeted via 3rd party api
 -[x] Tag system implemeted for posts/articles
