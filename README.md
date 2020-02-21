@@ -12,7 +12,7 @@
 - [x] Follow other users implemented
 - [x] Edit personal profile implemented
 
-### TodDo
+### Todo
 - [] Fix comment model to have userid as foreign key to display who commented
 - [] Edit/Delete/Update a post once its already been published
 - [] Redesign tag list to be implemented in a drop-down searchable bar
