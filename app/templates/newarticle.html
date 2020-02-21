@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{%block head%}
+{{ super() }}
+
+
+
+
+
+
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+
+
+
+
+{%endblock head%}
+{%block navbarRightLoggedIn%}
+    {{ super() }}
+
+    <li><a  href="#"  id="addTagButton">Add Tag</a></li>
+
+{%endblock navbarRightLoggedIn %}
+
+{% block app_content %}
+{%if addTagForm%}
+    <div id="addTagModal" class="addRecipeModal modal">
+        {% include 'add_tag.html' with context %}
+    </div>
+{%endif%}
+{%if title == 'Explore'%}
+<h1>Explore articles writted by our team!</h1>
+{%elif title=='New Article'%}
+<h1>{{ _('Hi, %(username)s , share your thoughts!', username=current_user.username|capitalize()) }}</h1>
+
+
+{%else%}
+<h1>{{ _('Hi, %(username)s!', username=current_user.username|capitalize() ) }}</h1>
+{%endif%}
+    
+    {% if postform %}
+    <div id='toolbar'></div>
+    {{ wtf.quick_form(postform) }}
+    <br>
+    {% endif %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='modal.js') }}"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+    /*
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });*/
+  var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+
+  ['clean']                                         // remove formatting button
+];
+
+  var options = {
+    debug: 'info',
+    modules: {
+        toolbar:toolbarOptions,
+        syntax:true
+      },
+    placeholder: 'Compose an epic...',
+    theme: 'snow'
+  };
+    var container = document.getElementById('editor');
+    var editor = new Quill(container,options);
+
+    mybutton = document.getElementsByName('submit')[1]
+    myhiddenrtf= document.getElementById('rtfhidden')
+    mybutton.onclick = function(){
+    editor = document.getElementById('editor');
+    myhtml = editor.getElementsByClassName('ql-editor')
+    myactualhtml = myhtml[0].innerHTML
+    myhiddenrtf.value = myactualhtml
+
+
+  }
+
+</script>
+{% endblock %}

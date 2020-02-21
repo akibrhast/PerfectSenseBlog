@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+
+    <h1>{{ _('Hi, %(username)s!', username=current_user.username|capitalize() ) }}</h1>
+
+        
+    <div width="70px">
+        <a href="{{ url_for('main.user', username=post.author.username) }}">
+            <img src="{{ post.author.avatar(20) }}" />
+        </a>
+    </div>
+    <div>
+        {% set user_link %}
+            <a href="{{ url_for('main.user', username=post.author.username) }}">
+                {{ post.author.username }}
+            </a>
+        {% endset %}
+        {{ _('%(username)s said %(when)s', username=user_link, when=moment(post.timestamp).fromNow()) }}
+        <br>
+
+
+    </div>
+    <div id="post{{ post.id }}", class="post_body" >
+        <div id="post{{ post.id }}", class="post_title">
+            <h2>{{post.title}}</h2>
+        </div>
+        {%if post.tags%}
+        <span><i>Tags:</i> </span>
+            {%for tags in post.tags%}
+                <span><a href="#">{{tags.name}}</a></span>
+            {%endfor%}
+        {%endif%}
+        
+            {{ post.body|safe }}
+
+    </div>
+    <div id='commentsection'>
+        
+        <div id='writecommentsection'>
+            {%if commentform%}
+                {{ wtf.quick_form(commentform) }}
+            {%endif%}
+        </div>
+
+        {%if comments%}
+            {% for comment in comments %}
+                {% include '_comment.html' %}
+            {% endfor %}
+        {%else%}
+            <p>This post has no comments yet be the first one to comment!</p>
+        {%endif%}
+    
+    </div>
+
+ 
+  
+{% endblock %}

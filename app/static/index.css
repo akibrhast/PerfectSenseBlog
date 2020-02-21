@@ -1,0 +1,11 @@
+ .post_body{
+    max-height: 100px;
+    height: auto;
+    overflow:hidden;   
+
+
+}
+
+/* .continuereading{
+    display:none;
+} */

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{%block head%}
+{{ super() }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+{%endblock head%}
+
+{% block app_content %}
+    {%if title == 'Explore'%}
+        <h1>Explore articles written by our team!</h1>
+    {%elif title=='New Article'%}
+        <h1>{{ _('Hi, %(username)s! , share your thoughts!', username=current_user.username|capitalize() ) }}</h1>
+    {%else%}
+    <h1>{{ _('Hi, %(username)s!', username=current_user.username|capitalize() ) }}</h1>
+    {%endif%}
+    
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+
+    
+
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> {{ _('Newer posts') }}
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    {{ _('Older posts') }} <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    
+<script type="text/javascript" src="{{ url_for('static', filename='showcontinuereadingbutton.js') }}"></script>
+
+{% endblock %}

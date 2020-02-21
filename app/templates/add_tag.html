@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='followingModal.css') }}">
+
+<!-- Add Tag Modal content -->
+<div class="modal-content">
+    <span class="close" id="addTagClose">&times;</span>
+    <h2>Add Tag</h2>
+    <form action="" method="post" novalidate enctype=multipart/form-data> {{ addTagForm.hidden_tag() }} <p>
+        
+        {{ addTagForm.name.label }}<br>
+        {{ addTagForm.name(size=32) }}
+        {% for error in addTagForm.name.errors %}
+        <span style="color: var(--error);">[{{ error }}]</span>
+        {% endfor %}
+
+        {{ addTagForm.submit(class_="button") }}
+    </form>
+</div>
