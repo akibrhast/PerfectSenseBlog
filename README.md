@@ -13,10 +13,10 @@
 - [x] Edit personal profile implemented
 
 ### Todo
-- [] Fix comment model to have userid as foreign key to display who commented
-- [] Edit/Delete/Update a post once its already been published
-- [] Redesign tag list to be implemented in a drop-down searchable bar
-- [] Implement feature - Search Posts by Tag
-- [] Implement git hooks, before commit, make sure to clear out .flaskenv variables
-- [] Add .flaskenv to source control
-- [] Implement elastic search
+- [ ] Fix comment model to have userid as foreign key to display who commented
+- [ ] Edit/Delete/Update a post once its already been published
+- [ ] Redesign tag list to be implemented in a drop-down searchable bar
+- [ ] Implement feature - Search Posts by Tag
+- [ ] Implement git hooks, before commit, make sure to clear out .flaskenv variables
+- [ ] Add .flaskenv to source control
+- [ ] Implement elastic search
